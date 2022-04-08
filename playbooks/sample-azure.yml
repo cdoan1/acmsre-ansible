@@ -8,7 +8,7 @@
   collections:
     - azure.azcollection
     - kubernetes.core
-    - brentwg.azure-cli
+    # - brentwg.azure-cli
 
   tasks:
 
@@ -19,4 +19,6 @@
 
     - name: Test az command
       shell: |
+        uname -a
+        cat /etc/*-release
         az storage account list -o table
