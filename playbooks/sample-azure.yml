@@ -18,5 +18,5 @@
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
 
     - name: Get facts for all accounts in a resource group
-      azure_rm_storageaccount_info:
+      azure.azcollection.azure_rm_storageaccount_info:
         resource_group: aoc1-stage-v46n5-rg
