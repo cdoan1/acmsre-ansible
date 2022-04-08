@@ -17,6 +17,12 @@
         secret: "{{ lookup('env', 'AZURE_SECRET') }}"
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
 
+    - name: Get facts for all accounts by tags
+      azure.azcollection.azure_rm_storageaccount_info:
+        tags:
+          - testing
+          - foo:bar
+
     - name: Get facts for all accounts in a resource group
       azure.azcollection.azure_rm_storageaccount_info:
         resource_group: aoc1-stage-v46n5-rg
