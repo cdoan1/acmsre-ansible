@@ -8,7 +8,7 @@
   collections:
     - azure.azcollection
     - kubernetes.core
-    # - brentwg.azure-cli
+    - brentwg.azure-cli
 
   tasks:
 
@@ -17,12 +17,6 @@
         secret: "{{ lookup('env', 'AZURE_SECRET') }}"
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
 
-    - name: Test az command
-      shell: |-
-        uname -a
-        cat /etc/*-release
-        rpm -ivh --nodeps $(curl -Ls -o /dev/null -w %{url_effective} https://aka.ms/InstallAzureCliRpmEdge)
-
-    - name: Test az command
-      shell: |-
-        az storage account list -o table
+    - name: Get facts for all accounts in a resource group
+      azure_rm_storageaccount_info:
+        resource_group: aoc1-stage-v46n5-rg
