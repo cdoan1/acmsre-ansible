@@ -10,12 +10,20 @@
     - kubernetes.core
     - brentwg.azure-cli
 
+  vars:
+    resource_group: aoc1-stage-v46n5-rg
+  
   tasks:
 
     - name: Setup Azure credentials
       ansible.builtin.set_fact:
         secret: "{{ lookup('env', 'AZURE_SECRET') }}"
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
+
+    - name: Query all the resources in the resource group
+      azure_rm_resource_info:
+        resource_group: "{{ resource_group }}"
+        resource_type: resources
 
     # - name: Get facts for all accounts by tags
     #   azure.azcollection.azure_rm_storageaccount_info:
