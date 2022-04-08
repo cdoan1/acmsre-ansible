@@ -8,6 +8,7 @@
   collections:
     - azure.azcollection
     - kubernetes.core
+    - brentwg.azure-cli
 
   tasks:
 
