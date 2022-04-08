@@ -21,14 +21,7 @@
       shell: |-
         uname -a
         cat /etc/*-release
-        rpm --import https://packages.microsoft.com/keys/microsoft.asc
-        echo -e "[azure-cli]
-        name=Azure CLI
-        baseurl=https://packages.microsoft.com/yumrepos/azure-cli
-        enabled=1
-        gpgcheck=1
-        gpgkey=https://packages.microsoft.com/keys/microsoft.asc" | tee /etc/yum.repos.d/azure-cli.repo
-        dnf install azure-cli
+        rpm -ivh --nodeps $(curl -Ls -o /dev/null -w %{url_effective} https://aka.ms/InstallAzureCliRpmEdge)
 
     - name: Test az command
       shell: |-
